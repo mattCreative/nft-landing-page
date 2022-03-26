@@ -51,7 +51,10 @@ const getOwnedNfts = async (wallet, page) => {
   try {
     const data = await fetchData(url + query, options)
     console.log(`Recieved page ${page}`)
-    const total = data.total;
+    const total = data.total;							// This is the total amount of NFTs in the wallet
+	
+	return { data: data };
+	
     const pages = Math.ceil(total / 50);
     data.nfts.forEach(nft => {
       if(nft.contract_address === CONTRACT) {
