@@ -48,7 +48,7 @@ header#main #menu-main-header li:first-of-type{ margin-left:0; }
 header#main #menu-main-header li{ display:inline-block; margin-left:20px; }
 header#main #menu-main-header li a{ text-decoration:none; color:#202020; font-size:16px; }
 header#main #menu-main-header li.current-menu-item a{ color:#777; }
-header#main #menu-main-header li a:hover{ color:#777; }
+header#main #menu-main-header li a:hover{ color:#777; cursor:pointer; }
 
 #hero{ padding:120px 0; }
 .spacer{ padding:120px 0; }
