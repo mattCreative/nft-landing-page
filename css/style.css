@@ -37,6 +37,19 @@ h3 a:hover{ color:#404040; }
 
 ul{ margin:0; padding:0; list-style:none; }
 
+header#main{ padding:30px 0; position:relative; z-index:1; }
+header#main .content-width{ position:relative; }
+a.logo{ display:inline-block; opacity:1; }
+a.logo:hover{ opacity:0.8; }
+a.logo img{ width:130px; }
+
+header#main #menu-main-header{ position:absolute; top:0; right:0; }
+header#main #menu-main-header li:first-of-type{ margin-left:0; }
+header#main #menu-main-header li{ display:inline-block; margin-left:20px; }
+header#main #menu-main-header li a{ text-decoration:none; color:#202020; font-size:16px; }
+header#main #menu-main-header li.current-menu-item a{ color:#777; }
+header#main #menu-main-header li a:hover{ color:#777; }
+
 #hero{ padding:120px 0; }
 .spacer{ padding:120px 0; }
 #projects.ideas{ padding-bottom:120px; }
