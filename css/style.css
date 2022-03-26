@@ -5,14 +5,13 @@
 /* GLOBAL STYLES */
 
 :root {
-  --font-primary: 'Poppins', sans-serif;
+  --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Arvo', serif;
   --font-code: 'Roboto', monospace;
-  --bg-color: #00163f;
-  --font-color: #ffffff;
+  --bg-color: #fff;
+  --font-color: #999;
   --btn-bg-color: #ffffff;
-  --accent-color: #be7efe;
-  --header-shadow: #000 0px 0px 5px;
+  --accent-color: #ccc;
 }
 
 * {
@@ -41,7 +40,6 @@ body {
 /* HEADER */
 
 header {
-  box-shadow: var(--header-shadow);
 }
 
 header .container {
@@ -80,7 +78,7 @@ header .container {
 }
 
 .wallet-btn {
-  border-radius: 5rem;
+  border-radius: 0;
   margin-left: 2rem;
   border-color: transparent;
 }
