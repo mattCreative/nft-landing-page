@@ -56,3 +56,34 @@ header#main #menu-main-header li a:hover{ color:#777; cursor:pointer; }
 
 #large-photo .page-width.photo{ max-width:1440px; padding:0; }
 #large-photo img{ display:block; width:100%; }
+
+#text{ padding:120px 0; }
+
+
+@media( min-width:901px ) {
+	#hero h1{ font-size:50px; line-height:62px; }
+}
+
+@media( max-width:900px ){
+	#hero, #text{ padding:100px 0; }
+}
+
+@media( max-width:600px ){
+	h1, .large{ font-size:35px; line-height:45px; }
+	h2{ font-size:26px; line-height:32px; }
+	h3{ font-size:22px; line-height:28px; }
+	p{ font-size:16px; line-height:27px; }
+	
+	#hero, #text, .spacer{ padding:80px 0; }
+	
+	#large-photo{ overflow:hidden; }
+	#large-photo .page-width.photo{ width:120%; margin-left:-10%; }
+	
+	#text ul{ margin-left:25px; }
+}
+
+@media( max-width:450px ){
+	h1, .large{ font-size:30px; line-height:40px; }
+	
+	#large-photo .page-width.photo{ width:140%; margin-left:-20%; }
+}
