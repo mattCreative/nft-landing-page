@@ -97,6 +97,7 @@ const checkOwner = async (account) => {
   }
 }
 
+/*
 const uploadImagesToIPFS = async => {
 	let imagePath = "/images/tokens/default-tokens.png";
 	
@@ -104,6 +105,7 @@ const uploadImagesToIPFS = async => {
 
 	console.log(data);
 }
+*/
 
 function updateStatusText(isOwner, checking) {
   const statusText = document.querySelector('.owner-status');
