@@ -26,6 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
       };
 	  
     } else if (accounts && accounts.length > 0) {
+		console.log(accounts);
       onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
       onboardButton.disabled = true;
       onboarding.stopOnboarding();
