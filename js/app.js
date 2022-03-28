@@ -17,9 +17,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
       onboardButton.innerText = 'Install MetaMask';
 	  walletActions.innterText = 'Install MetaMask';
-	   walletActions.innterText = 'Install MetaMask';
+	  
       onboardButton.onclick = () => {
         onboardButton.innerText = 'Connecting...';
+		walletActions.innterText = 'Connecting...';
         onboardButton.disabled = true;
         onboarding.startOnboarding();
       };
