@@ -1,29 +1,42 @@
 // METAMASK CONNECTION
 const TIMEOUT = 1000;
-const COLLECTION_NAME = 'CodeCats';
+const COLLECTION_NAME = 'DefaultTokens';
 let editions = [];
 let dots = 1;
 
 window.addEventListener('DOMContentLoaded', () => {
-  const onboarding = new MetaMaskOnboarding();
-  const onboardButton = document.getElementById('connectWallet');
-  let accounts;
+	const onboarding = new MetaMaskOnboarding();
+	const onboardButton = document.getElementById('connectWallet');
+	const walletActions = document.getElementById('walletActions');
+	const checkWallet = document.getElementById('checkWallet');
+	
+	let accounts;
 
-  const updateButton = async () => {
+	// MetaMask + Reader
+  const updateWalletButton = async () => {
     if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
-      onboardButton.innerText = 'Install MetaMask!';
+      onboardButton.innerText = 'Install MetaMask';
+	  walletActions.innterText = 'Install MetaMask';
+	   walletActions.innterText = 'Install MetaMask';
       onboardButton.onclick = () => {
         onboardButton.innerText = 'Connecting...';
         onboardButton.disabled = true;
         onboarding.startOnboarding();
       };
+	  
     } else if (accounts && accounts.length > 0) {
       onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
       onboardButton.disabled = true;
       onboarding.stopOnboarding();
-      checkOwner(accounts[0]);
+      //checkOwner(accounts[0]);
+	  
+	  walletActions.style.display = 'none';
+	  checkWallet.style.display = 'block';
+	  
     } else {
-      onboardButton.innerText = 'Connect MetaMask!';
+      onboardButton.innerText = 'Connect MetaMask';
+	  walletActions.innterText = 'Connect MetaMask';
+	  
       onboardButton.onclick = async () => {
         await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -31,19 +44,27 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(function(accounts) {
           onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
           onboardButton.disabled = true;
-          checkOwner(accounts[0]);
+          //checkOwner(accounts[0]);
+		  
+		  walletActions.style.display = 'none';
+		  checkWallet.style.display = 'block';
         });
       };
     }
   };
 
-  updateButton();
+  updateWalletButton();
   if (MetaMaskOnboarding.isMetaMaskInstalled()) {
     window.ethereum.on('accountsChanged', (newAccounts) => {
       accounts = newAccounts;
-      updateButton();
+      updateWalletButton();
     });
   }
+  
+	checkWallet.onclick = async () => {
+		console.log('CheckOwner Trigger');
+		checkOwner(accounts[0]);
+	}
 });
 
 const checkOwner = async (account) => {
@@ -76,6 +97,14 @@ const checkOwner = async (account) => {
   }
 }
 
+const uploadImagesToIPFS = async => {
+	let imagePath = "/images/tokens/default-tokens.png";
+	
+    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/?imagePath=${imagePath}`);
+
+	console.log(data);
+}
+
 function updateStatusText(isOwner, checking) {
   const statusText = document.querySelector('.owner-status');
   if(checking) {
@@ -94,6 +123,8 @@ function updateStatusText(isOwner, checking) {
   dots = dots === 3 ? 1 : dots + 1;
 }
 
+
+// Helpers
 function renderDots(dots) {
   let dotsString = '';
   for (let i = 0; i < dots; i++) {
