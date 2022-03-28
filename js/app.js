@@ -43,10 +43,11 @@ window.addEventListener('DOMContentLoaded', () => {
         await window.ethereum.request({
           method: 'eth_requestAccounts',
         })
-        .then(function(accounts) {
-          onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
+        .then(function(newAccounts) {
+          onboardButton.innerText = `Connected Wallet ...${newAccounts[0].slice(-4)} ✔`;
           onboardButton.disabled = true;
-		   console.log('here 3');
+		  accounts = newAccounts;
+		  console.log('here 3');
 		  console.log(accounts);
           //checkOwner(accounts[0]);
 		  
@@ -69,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
 	checkWallet.onclick = async () => {
 		console.log('CheckOwner Trigger');
+		console.log(accounts);
 		checkOwner(accounts[0]);
 		event.preventDefault();
 	}
