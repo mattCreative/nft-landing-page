@@ -65,6 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
 	checkWallet.onclick = async () => {
 		checkOwner(accounts[0]);
+		updateStatusText(false, false);
 		event.preventDefault();
 	}
 });
