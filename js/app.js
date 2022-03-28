@@ -46,6 +46,8 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(function(accounts) {
           onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
           onboardButton.disabled = true;
+		   console.log('here 3');
+		  console.log(accounts);
           //checkOwner(accounts[0]);
 		  
 		  walletActions.style.display = 'none';
@@ -57,7 +59,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   updateWalletButton();
   if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-    window.ethereum.on('accountsChanged', (newAccounts) => {
+    console.log('here 1');
+	window.ethereum.on('accountsChanged', (newAccounts) => {
+		console.log('here 2');
       accounts = newAccounts;
       updateWalletButton();
     });
