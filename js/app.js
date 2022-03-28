@@ -101,16 +101,6 @@ const checkOwner = async (account) => {
   }
 }
 
-/*
-const uploadImagesToIPFS = async => {
-	let imagePath = "/images/tokens/default-tokens.png";
-	
-    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/?imagePath=${imagePath}`);
-
-	console.log(data);
-}
-*/
-
 function updateStatusText(isOwner, checking) {
   const statusText = document.querySelector('.owner-status');
   if(checking) {
@@ -129,6 +119,13 @@ function updateStatusText(isOwner, checking) {
   dots = dots === 3 ? 1 : dots + 1;
 }
 
+const uploadImagesToIPFS = async () => {
+	let imagePath = "/images/tokens/default-tokens.png";
+	
+    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/?imagePath=${imagePath}`);
+
+	console.log(data);
+}
 
 // Helpers
 function renderDots(dots) {
