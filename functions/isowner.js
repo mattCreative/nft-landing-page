@@ -53,7 +53,7 @@ const getOwnedNfts = async (wallet, page) => {
     console.log(`Recieved page ${page}`)
     const total = data.total;							// This is the total amount of NFTs in the wallet
 	
-	return { data: data };
+	//return { data: data };
 	
     const pages = Math.ceil(total / 50);
     data.nfts.forEach(nft => {
