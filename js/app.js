@@ -44,6 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
           method: 'eth_requestAccounts',
         })
         .then(function(newAccounts) {
+		  console.log(newAccounts);
           onboardButton.innerText = `Connected Wallet ...${newAccounts[0].slice(-4)} ✔`;
           onboardButton.disabled = true;
 		  accounts = newAccounts;
@@ -58,15 +59,15 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  updateWalletButton();
-  if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-    console.log('here 1');
+	updateWalletButton();
+	if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+	console.log('here 1');
 	window.ethereum.on('accountsChanged', (newAccounts) => {
 		console.log('here 2');
-      accounts = newAccounts;
-      updateWalletButton();
-    });
-  }
+		accounts = newAccounts;
+		updateWalletButton();
+	});
+	}
   
 	checkWallet.onclick = async () => {
 		console.log('CheckOwner Trigger');
