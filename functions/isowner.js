@@ -55,7 +55,7 @@ const getOwnedNfts = async (wallet, page) => {
 	
 	//return { data: data };
 	
-    const pages = Math.ceil(total / 50);
+    const pages = Math.max(Math.ceil(total / 50), 1);	// We can't have 0 pages, or this thing trigger an infinite loop
     data.nfts.forEach(nft => {
       if(nft.contract_address === CONTRACT) {
         editions.push(nft.token_id)
