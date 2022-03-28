@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
   }
 }
 
-/*
+
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
@@ -48,4 +48,3 @@ const uploadImages = async (imagePath) => {
 	})
   
 }
-*/

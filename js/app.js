@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	const onboardButton = document.getElementById('connectWallet');
 	const walletActions = document.getElementById('walletActions');
 	const checkWallet = document.getElementById('checkWallet');
+	const uploadImages = document.getElementById('uploadImages');
 	
 	let accounts;
 
@@ -65,7 +66,12 @@ window.addEventListener('DOMContentLoaded', () => {
   
 	checkWallet.onclick = async () => {
 		checkOwner(accounts[0]);
-		updateStatusText(false, false);
+		updateStatusText(false, true);
+		event.preventDefault();
+	}
+	
+	uploadImages.onclick = async () => {
+		uploadImagesToIPFS();
 		event.preventDefault();
 	}
 });
