@@ -16,11 +16,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const updateWalletButton = async () => {
     if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
       onboardButton.innerText = 'Install MetaMask';
-	  walletActions.innterText = 'Install MetaMask';
+	  walletActions.innerText = 'Install MetaMask';
 	  
       onboardButton.onclick = () => {
         onboardButton.innerText = 'Connecting...';
-		walletActions.innterText = 'Connecting...';
+		walletActions.innerText = 'Connecting...';
         onboardButton.disabled = true;
         onboarding.startOnboarding();
       };
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	  
     } else {
       onboardButton.innerText = 'Connect MetaMask';
-	  walletActions.innterText = 'Connect MetaMask';
+	  walletActions.innerText = 'Connect MetaMask';
 	  
       onboardButton.onclick = async () => {
         await window.ethereum.request({
@@ -65,6 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	checkWallet.onclick = async () => {
 		console.log('CheckOwner Trigger');
 		checkOwner(accounts[0]);
+		event.preventDefault();
 	}
 });
 

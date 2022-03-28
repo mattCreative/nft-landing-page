@@ -37,6 +37,9 @@ h3 a:hover{ color:#404040; }
 
 ul{ margin:0; padding:0; list-style:none; }
 
+.link{ display:inline-block; text-decoration:none; color:#2196f3 !important; cursor:pointer; }
+.link:hover{ color:#202020 !important; }
+
 header#main{ padding:30px 0; position:relative; z-index:1; }
 header#main .content-width{ position:relative; }
 a.logo{ display:inline-block; opacity:1; }
