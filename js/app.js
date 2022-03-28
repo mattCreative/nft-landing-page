@@ -26,7 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
       };
 	  
     } else if (accounts && accounts.length > 0) {
-		console.log(accounts);
       onboardButton.innerText = `Connected Wallet ...${accounts[0].slice(-4)} ✔`;
       onboardButton.disabled = true;
       onboarding.stopOnboarding();
@@ -44,12 +43,9 @@ window.addEventListener('DOMContentLoaded', () => {
           method: 'eth_requestAccounts',
         })
         .then(function(newAccounts) {
-		  console.log(newAccounts);
           onboardButton.innerText = `Connected Wallet ...${newAccounts[0].slice(-4)} ✔`;
           onboardButton.disabled = true;
 		  accounts = newAccounts;
-		  console.log('here 3');
-		  console.log(accounts);
           //checkOwner(accounts[0]);
 		  
 		  walletActions.style.display = 'none';
@@ -61,17 +57,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	updateWalletButton();
 	if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-	console.log('here 1');
 	window.ethereum.on('accountsChanged', (newAccounts) => {
-		console.log('here 2');
 		accounts = newAccounts;
 		updateWalletButton();
 	});
 	}
   
 	checkWallet.onclick = async () => {
-		console.log('CheckOwner Trigger');
-		console.log(accounts);
 		checkOwner(accounts[0]);
 		event.preventDefault();
 	}
@@ -93,14 +85,16 @@ const checkOwner = async (account) => {
     let nextPage = data.next_page
 
     while(nextPage) {
-      page = nextPage
-      const data = await fetchWithRetry(`/.netlify/functions/isowner/?wallet=${account}&page=${page}`);
+		page = nextPage
+		const data = await fetchWithRetry(`/.netlify/functions/isowner/?wallet=${account}&page=${page}`);
 
-      isOwner = !isOwner ? data.isOwner : isOwner;
-      updateStatusText(isOwner, true)
-      
-      editions = [...editions, ...data.editions]
-      nextPage = data.next_page
+		console.log(data);
+
+		isOwner = !isOwner ? data.isOwner : isOwner;
+		updateStatusText(isOwner, true)
+
+		editions = [...editions, ...data.editions]
+		nextPage = data.next_page
     }
 
     updateStatusText(isOwner, false)
