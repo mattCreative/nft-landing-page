@@ -5,23 +5,33 @@ const FormData = require('form-data');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
-  const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
+	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
+	const formData = new FormData();
 
-console.log(imagePath);
+	formData.append('file', fs.createReadStream(imagePath));
 
-  const response = await uploadImages(imagePath)
+	console.log(imagePath);
 
-  return {
-    'statusCode': 200,
-    'headers': {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
-    },
-    'body': JSON.stringify(response)
-  }
+	let options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'multipart/form-data',
+			Authorization: AUTH,
+			'content-type': 'multipart/form-data; boundary=---011000010111000001101001'
+		}
+	};
+
+	options.body = formData;
+	
+	console.log(options);
+
+	fetch(url, options)
+		.then(res => res.json())
+		.then(json => console.log(json))
+		.catch(err => console.error('error:' + err));
 }
 
-
+/*
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
@@ -40,7 +50,6 @@ const uploadImages = async (imagePath) => {
 	};
 	
 	console.log(url);
-	console.log(options);
 
 	try {
 		const data = await fetchData(url, options)
@@ -56,27 +65,10 @@ const uploadImages = async (imagePath) => {
 			error: err
 		}
 	}
-
-/*
-	fetch(url, options)
-	.then(response => {
-		console.log(response);
-		console.log(response.json());
-		return response.json()
-	})
-	.then(responseJson => {
-		// Handle the response
-		console.log(responseJson);
-		return responseJson;
-	})
-*/
-  
 }
 
 async function fetchData(url, options) {
-	console.log('fetchData called');
   return new Promise((resolve, reject) => {
-	  console.log('Promise');
     return fetch(url, options).then(res => {
 		console.log(res);
       const status = res.status;            
@@ -92,3 +84,4 @@ async function fetchData(url, options) {
     });
   });
 }
+*/
