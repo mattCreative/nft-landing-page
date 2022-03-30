@@ -8,6 +8,8 @@ const AUTH = process.env.NFTPORT_AUTH;
 exports.handler = async (event, context) => {
   const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 
+console.log(imagePath);
+
   const response = await uploadImages(imagePath)
 
   return {
@@ -28,6 +30,8 @@ const uploadImages = async (imagePath) => {
 	const fileStream = fs.createReadStream(imagePath);
 	form.append('file', fileStream);
 
+	console.log(fileStream);
+
 	const options = {
 		method: 'POST',
 		body: form,
@@ -39,11 +43,13 @@ const uploadImages = async (imagePath) => {
 
 	fetch(url, options)
 	.then(response => {
+		console.log(response);
+		console.log(response.json());
 		return response.json()
 	})
 	.then(responseJson => {
 		// Handle the response
-		//console.log(responseJson);
+		console.log(responseJson);
 		return responseJson;
 	})
   
