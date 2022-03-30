@@ -5,8 +5,10 @@ const FormData = require('form-data');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
-	const url = "https://api.nftport.xyz/v0/files";
 	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
+	
+	/*
+	const url = "https://api.nftport.xyz/v0/files";
 	const formData = new FormData();
 
 	formData.append('file', fs.createReadStream(imagePath));
@@ -23,6 +25,7 @@ exports.handler = async (event, context) => {
 	};
 
 	options.body = JSON.stringify(formData);
+	// { detail: 'There was an error parsing the body' }
 	
 	fetch(url, options)
 		.then(res => {
@@ -33,6 +36,10 @@ exports.handler = async (event, context) => {
 		.then(res => res.json())
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
+		
+	*/
+	
+	//const response = await uploadImages(imagePath)
 }
 
 /*
@@ -45,26 +52,24 @@ function checkResponseStatus(res) {
 }
 */
 
-/*
+
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
-	const form = new FormData();
+	const formData = new FormData();
 	const fileStream = fs.createReadStream(imagePath);
-	form.append('file', fileStream);
+	formData.append('file', fileStream);
 
 	const options = {
 		method: 'POST',
-		body: form,
+		body: JSON.stringify(formData),
 		headers: {
 			"Content-Type": "multipart/form-data",
-			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 			Authorization: AUTH
+			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 		}
 	};
 	
-	console.log(url);
-
 	try {
 		const data = await fetchData(url, options)
 
@@ -98,4 +103,3 @@ async function fetchData(url, options) {
     });
   });
 }
-*/
