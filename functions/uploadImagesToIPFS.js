@@ -7,7 +7,6 @@ const AUTH = process.env.NFTPORT_AUTH;
 exports.handler = async (event, context) => {
 	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 	
-	/*
 	const url = "https://api.nftport.xyz/v0/files";
 	const formData = new FormData();
 
@@ -37,7 +36,6 @@ exports.handler = async (event, context) => {
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
 		
-	*/
 	
 	/*
 	
