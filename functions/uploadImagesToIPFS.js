@@ -25,6 +25,7 @@ exports.handler = async (event, context) => {
 	options.body = formData;
 	
 	fetch(url, options)
+		.then(res => console.log(res))
 		.then(res => res.json())
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
