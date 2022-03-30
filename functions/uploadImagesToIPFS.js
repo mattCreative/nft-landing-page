@@ -86,7 +86,9 @@ const uploadImages = async (imagePath) => {
 }
 
 async function fetchData(url, options) {
+	console.log('fetchData');
   return new Promise((resolve, reject) => {
+	  console.log('Promise');
     return fetch(url, options).then(res => {
 	console.log(res);
       const status = res.status;            
