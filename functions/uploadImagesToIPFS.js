@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
 		}
 	};
 
-	options.body = formData;
+	options.body = JSON.stringify(formData);
 	
 	fetch(url, options)
 		.then(res => console.log(res))
@@ -31,6 +31,7 @@ exports.handler = async (event, context) => {
 		.catch(err => console.error('error:' + err));
 }
 
+/*
 function checkResponseStatus(res) {
     if(res.ok){
         return res
@@ -38,6 +39,7 @@ function checkResponseStatus(res) {
         throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
     }
 }
+*/
 
 /*
 const uploadImages = async (imagePath) => {
