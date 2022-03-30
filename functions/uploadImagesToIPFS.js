@@ -5,6 +5,7 @@ const FormData = require('form-data');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
+	const url = "https://api.nftport.xyz/v0/files";
 	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 	const formData = new FormData();
 
