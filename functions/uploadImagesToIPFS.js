@@ -40,6 +40,15 @@ exports.handler = async (event, context) => {
 	*/
 	
 	const response = await uploadImages(imagePath)
+	
+	return {
+		'statusCode': 200,
+		'headers': {
+		  'Cache-Control': 'no-cache',
+		  'Content-Type': 'application/json',
+		},
+		'body': JSON.stringify(response)
+	  }
 }
 
 
@@ -79,7 +88,7 @@ const uploadImages = async (imagePath) => {
 async function fetchData(url, options) {
   return new Promise((resolve, reject) => {
     return fetch(url, options).then(res => {
-		console.log(res);
+	console.log(res);
       const status = res.status;            
 
       if(status === 200) {
