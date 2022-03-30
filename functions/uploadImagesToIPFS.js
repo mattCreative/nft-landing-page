@@ -5,9 +5,8 @@ const FormData = require('form-data');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
-	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
-	
 	const url = "https://api.nftport.xyz/v0/files";
+	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 	const formData = new FormData();
 
 	formData.append('file', fs.createReadStream(imagePath));
@@ -24,7 +23,6 @@ exports.handler = async (event, context) => {
 	};
 
 	options.body = JSON.stringify(formData);
-	// { detail: 'There was an error parsing the body' }
 	
 	fetch(url, options)
 		.then(res => {
@@ -35,41 +33,38 @@ exports.handler = async (event, context) => {
 		.then(res => res.json())
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
-		
-	
-	/*
-	
-	const response = await uploadImages(imagePath)
-	
-	return {
-		'statusCode': 200,
-		'headers': {
-		  'Cache-Control': 'no-cache',
-		  'Content-Type': 'application/json',
-		},
-		'body': JSON.stringify(response)
-	  }
-	  */
 }
 
+/*
+function checkResponseStatus(res) {
+    if(res.ok){
+        return res
+    } else {
+        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+    }
+}
+*/
 
+/*
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
-	const formData = new FormData();
+	const form = new FormData();
 	const fileStream = fs.createReadStream(imagePath);
-	formData.append('file', fileStream);
+	form.append('file', fileStream);
 
 	const options = {
 		method: 'POST',
-		body: JSON.stringify(formData),
+		body: form,
 		headers: {
 			"Content-Type": "multipart/form-data",
-			Authorization: AUTH
 			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
+			Authorization: AUTH
 		}
 	};
 	
+	console.log(url);
+
 	try {
 		const data = await fetchData(url, options)
 
@@ -87,11 +82,9 @@ const uploadImages = async (imagePath) => {
 }
 
 async function fetchData(url, options) {
-	console.log('fetchData');
   return new Promise((resolve, reject) => {
-	  console.log('Promise');
     return fetch(url, options).then(res => {
-	console.log(res);
+		console.log(res);
       const status = res.status;            
 
       if(status === 200) {
@@ -105,3 +98,4 @@ async function fetchData(url, options) {
     });
   });
 }
+*/
