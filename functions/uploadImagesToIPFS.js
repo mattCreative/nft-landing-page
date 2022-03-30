@@ -39,6 +39,8 @@ exports.handler = async (event, context) => {
 		
 	*/
 	
+	/*
+	
 	const response = await uploadImages(imagePath)
 	
 	return {
@@ -49,6 +51,7 @@ exports.handler = async (event, context) => {
 		},
 		'body': JSON.stringify(response)
 	  }
+	  */
 }
 
 
