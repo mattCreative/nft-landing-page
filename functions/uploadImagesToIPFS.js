@@ -40,6 +40,22 @@ const uploadImages = async (imagePath) => {
 	console.log(url);
 	console.log(options);
 
+	try {
+		const data = await fetchData(url, options)
+
+		console.log(data);
+
+		return {
+			data
+		}
+	} catch(err) {
+		console.log(`Catch: ${JSON.stringify(err)}`)
+		return {
+			error: err
+		}
+	}
+
+/*
 	fetch(url, options)
 	.then(response => {
 		console.log(response);
@@ -51,5 +67,24 @@ const uploadImages = async (imagePath) => {
 		console.log(responseJson);
 		return responseJson;
 	})
+*/
   
+}
+
+async function fetchData(url, options) {
+  return new Promise((resolve, reject) => {
+    return fetch(url, options).then(res => {
+		console.log(res);
+      const status = res.status;            
+
+      if(status === 200) {
+        return resolve(res.json());
+      } else {
+        console.log(`Fetch failed with status ${status}`);
+        return reject(res.json());
+      }        
+    }).catch(function (error) { 
+      reject(error)
+    });
+  });
 }
