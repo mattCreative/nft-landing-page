@@ -25,7 +25,11 @@ exports.handler = async (event, context) => {
 	options.body = JSON.stringify(formData);
 	
 	fetch(url, options)
-		.then(res => console.log(res))
+		.then(res => {
+				console.log(res)
+				return res;
+			}
+		)
 		.then(res => res.json())
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
