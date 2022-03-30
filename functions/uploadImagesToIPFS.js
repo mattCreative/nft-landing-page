@@ -33,7 +33,9 @@ const uploadImages = async (imagePath) => {
 		method: 'POST',
 		body: form,
 		headers: {
-		  Authorization: AUTH
+			"Content-Type": "multipart/form-data",
+			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
+			Authorization: AUTH
 		}
 	};
 	
