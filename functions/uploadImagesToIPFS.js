@@ -39,18 +39,8 @@ exports.handler = async (event, context) => {
 		
 	*/
 	
-	//const response = await uploadImages(imagePath)
+	const response = await uploadImages(imagePath)
 }
-
-/*
-function checkResponseStatus(res) {
-    if(res.ok){
-        return res
-    } else {
-        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-    }
-}
-*/
 
 
 const uploadImages = async (imagePath) => {
