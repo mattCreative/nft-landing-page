@@ -4,7 +4,6 @@ const FormData = require('form-data');
 
 const AUTH = process.env.NFTPORT_AUTH;
 
-
 exports.handler = async (event, context) => {
   const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 
@@ -30,16 +29,16 @@ const uploadImages = async (imagePath) => {
 	const fileStream = fs.createReadStream(imagePath);
 	form.append('file', fileStream);
 
-	console.log(fileStream);
-
 	const options = {
 		method: 'POST',
 		body: form,
 		headers: {
-		  'Content-Type': 'application/json',
 		  Authorization: AUTH
 		}
 	};
+	
+	console.log(url);
+	console.log(options);
 
 	fetch(url, options)
 	.then(response => {
