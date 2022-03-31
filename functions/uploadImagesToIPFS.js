@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
 }
 
 
-/*
+
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
@@ -49,8 +49,8 @@ const uploadImages = async (imagePath) => {
 		body: form,
 		headers: {
 			"Content-Type": "multipart/form-data",
-			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 			Authorization: AUTH
+			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 		}
 	};
 	
@@ -71,7 +71,7 @@ const uploadImages = async (imagePath) => {
 		}
 	}
 }
-*/
+
 
 async function fetchData(url, options) {
   return new Promise((resolve, reject) => {
