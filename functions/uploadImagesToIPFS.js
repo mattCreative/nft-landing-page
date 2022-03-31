@@ -40,29 +40,27 @@ exports.handler = async (event, context) => {
 const uploadImages = async (imagePath) => {
 	const url = "https://api.nftport.xyz/v0/files";
 
-	const form = new FormData();
+	const formData = new FormData();
 	const fileStream = fs.createReadStream(imagePath);
-	form.append('file', fileStream);
+	formData.append('file', fileStream);
 
 	const options = {
 		method: 'POST',
-		body: form,
+		body: formData,
 		headers: {
 			"Content-Type": "multipart/form-data",
-			Authorization: AUTH
+			Authorization: AUTH,
 			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 		}
 	};
 	
-	console.log(url);
-
 	try {
 		const data = await fetchData(url, options)
 
 		console.log(data);
 
 		return {
-			data
+			data: data
 		}
 	} catch(err) {
 		console.log(`Catch: ${JSON.stringify(err)}`)
