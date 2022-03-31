@@ -35,15 +35,6 @@ exports.handler = async (event, context) => {
 		.catch(err => console.error('error:' + err));
 }
 
-/*
-function checkResponseStatus(res) {
-    if(res.ok){
-        return res
-    } else {
-        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
-    }
-}
-*/
 
 /*
 const uploadImages = async (imagePath) => {
@@ -80,6 +71,7 @@ const uploadImages = async (imagePath) => {
 		}
 	}
 }
+*/
 
 async function fetchData(url, options) {
   return new Promise((resolve, reject) => {
@@ -98,4 +90,3 @@ async function fetchData(url, options) {
     });
   });
 }
-*/
