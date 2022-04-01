@@ -64,6 +64,7 @@ const getListOfImages = async () => {
 			data: data,
 		}
 	} catch(err) {
+		console.log(err);
 		console.log(`Catch: ${JSON.stringify(err)}`)
 		return {
 			error: err
