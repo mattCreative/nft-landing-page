@@ -15,7 +15,6 @@ exports.handler = async (event, context) => {
 		method: 'POST',
 		body: formData,
 		headers: {
-			//'Content-Type': 'multipart/form-data',
 			Authorization: AUTH,
 		}
 	};
@@ -44,9 +43,7 @@ const uploadImages = async (imagePath) => {
 		method: 'POST',
 		body: formData,
 		headers: {
-			"Content-Type": "multipart/form-data",
 			Authorization: AUTH,
-			"content-type": "multipart/form-data; boundary=---011000010111000001101001",
 		}
 	};
 	
