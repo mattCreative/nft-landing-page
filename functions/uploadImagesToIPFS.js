@@ -9,20 +9,20 @@ exports.handler = async (event, context) => {
 	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
 	const formData = new FormData();
 
-	formData.append('file', fs.createReadStream(imagePath));
+	let stream = fs.createReadStream(imagePath);
+	console.log(stream)
 
-	console.log(imagePath);
+	formData.append('file', stream);
 
 	let options = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'multipart/form-data',
 			Authorization: AUTH,
-			'content-type': 'multipart/form-data; boundary=---011000010111000001101001'
 		}
 	};
 
-	options.body = JSON.stringify(formData);
+	options.body = formData;
 	
 	fetch(url, options)
 		.then(res => {
