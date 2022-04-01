@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
 		.then(res => res.json())
 		.then(json => {
 				console.log(json)
-				console.log(json['detail']['loc']);
+				console.log(JSON.stringify(json, null, 2));
 				return json;
 			})
 		.catch(err => console.error('error:' + err));
