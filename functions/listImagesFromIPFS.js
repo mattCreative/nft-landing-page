@@ -80,9 +80,9 @@ async function fetchData(url, options) {
         return resolve(res.json());
       } else {
         console.log(`Fetch failed with status ${status}`);
-		let json = res.json()
-		console.log(json)
-		console.log(JSON.stringify(json, null, 2));
+		//let json = res.json()
+		//console.log(json)
+		//console.log(JSON.stringify(json, null, 2));
         return reject(res.json());
       }        
     }).catch(function (error) { 
