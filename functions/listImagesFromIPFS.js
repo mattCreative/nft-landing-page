@@ -13,8 +13,12 @@ exports.handler = async (event, context) => {
 			Authorization: AUTH
 		}
 	};
+	
+	const query = new URLSearchParams({
+		type: 'all'
+	});
 
-	fetch(url, options)
+	fetch(url + query, options)
 		.then(res => res.json())
 		.then(json => {
 				console.log(json)
