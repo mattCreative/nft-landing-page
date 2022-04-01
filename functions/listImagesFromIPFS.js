@@ -72,7 +72,7 @@ const getListOfImages = async () => {
 
 }
 
-async function fetchData(url, options) {
+const fetchData = async(url, options) => {
   return new Promise((resolve, reject) => {
     return fetch(url, options).then(res => {
       const status = res.status;            
