@@ -44,31 +44,31 @@ exports.handler = async (event, context) => {
 const getListOfImages = async () => {
 	const url = 'https://api.nftport.xyz/v0/me/storage';
   
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: AUTH
-    }
-  };
+	const options = {
+	method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: AUTH
+		}
+	};
   
-  const query = new URLSearchParams({
-    type: 'all'
-  });
+	const query = new URLSearchParams({
+		type: 'all'
+	});
 
-  let editions = []
-  try {
-    const data = await fetchData(url + query, options)
-	
-    return {
-      data: data,
-    }
-  } catch(err) {
-    console.log(`Catch: ${JSON.stringify(err)}`)
-    return {
-      error: err
-    }
-  }
+	let editions = []
+	try {
+		const data = await fetchData(url + query, options)
+
+		return {
+			data: data,
+		}
+	} catch(err) {
+		console.log(`Catch: ${JSON.stringify(err)}`)
+		return {
+			error: err
+		}
+	}
 }
 
 async function fetchData(url, options) {
@@ -80,6 +80,9 @@ async function fetchData(url, options) {
         return resolve(res.json());
       } else {
         console.log(`Fetch failed with status ${status}`);
+		let json = res.json()
+		console.log(json)
+		console.log(JSON.stringify(json, null, 2));
         return reject(res.json());
       }        
     }).catch(function (error) { 
