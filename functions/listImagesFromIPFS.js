@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
 
 	let options = {
 		method: 'GET',
-		qs: {type: ['all']},
+		//qs: {type: ['all']},
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: AUTH
@@ -15,10 +15,10 @@ exports.handler = async (event, context) => {
 	};
 	
 	const query = new URLSearchParams({
-		type: 'all'
+		type: ['all']
 	});
 
-	fetch(url, options)
+	fetch(url +query, options)
 		.then(res => res.json())
 		.then(json => {
 				console.log(json)
