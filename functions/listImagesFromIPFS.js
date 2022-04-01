@@ -15,13 +15,10 @@ exports.handler = async (event, context) => {
 	};
 
 	fetch(url, options)
-		.then(res => {
-				console.log('here');
-				return res.json();
-			})
+		.then(res => res.json())
 		.then(json => {
 				console.log(json)
-				console.log(json.detail['loc']);
+				console.log(json['detail']['loc']);
 				return json;
 			})
 		.catch(err => console.error('error:' + err));
