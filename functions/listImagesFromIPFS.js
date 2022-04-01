@@ -55,8 +55,8 @@ const getListOfImages = async () => {
 	const query = new URLSearchParams({
 		type: 'all'
 	});
-
-	let editions = []
+	
+/*
 	try {
 		const data = await fetchData(url + query, options)
 
@@ -70,6 +70,14 @@ const getListOfImages = async () => {
 			error: err
 		}
 	}
+*/
+	
+	fetchData(url + query, options)
+	.then(res => {
+		console.log(res);
+    }).catch(function (error) { 
+		console.log(error);
+    });
 }
 
 async function fetchData(url, options) {
