@@ -4,10 +4,10 @@ const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
 	const url = 'https://api.nftport.xyz/v0/me/storage';
-
+	/*
 	let options = {
 		method: 'GET',
-		//qs: {type: ['all']},
+		qs: {type: ['all']},
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: AUTH
@@ -15,10 +15,10 @@ exports.handler = async (event, context) => {
 	};
 	
 	const query = new URLSearchParams({
-		type: ['all']
+		type: 'all'
 	});
 
-	fetch(url +query, options)
+	fetch(url, options)
 		.then(res => res.json())
 		.then(json => {
 				console.log(json)
@@ -26,5 +26,17 @@ exports.handler = async (event, context) => {
 				return json;
 			})
 		.catch(err => console.error('error:' + err));
+	*/
+
+	let response = "test";
+	
+	return {
+		'statusCode': 200,
+		'headers': {
+			'Cache-Control': 'no-cache',
+			'Content-Type': 'application/json',
+		},
+		'body': JSON.stringify(response)
+	}
   
 }
