@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
 
 	let options = {
 		method: 'GET',
+		qs: {type: 'all'},
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: AUTH
