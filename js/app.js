@@ -10,6 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	const walletActions = document.getElementById('walletActions');
 	const checkWallet = document.getElementById('checkWallet');
 	const uploadImages = document.getElementById('uploadImages');
+	const listImages = document.getElementById('listImages');
 	
 	let accounts;
 
@@ -74,6 +75,11 @@ window.addEventListener('DOMContentLoaded', () => {
 		uploadImagesToIPFS();
 		event.preventDefault();
 	}
+	
+	listImages.onclick = async () => {
+		listImagesFROMIPFS();
+		event.preventDefault();
+	}
 });
 
 const checkOwner = async (account) => {
@@ -130,6 +136,13 @@ const uploadImagesToIPFS = async () => {
 	let imagePath = "/images/tokens/default-tokens.png";
 	
     const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/?imagePath=${imagePath}`);
+
+	console.log(data);
+}
+
+const listImagesFROMIPFS = async () => {
+	
+    const data = await fetchWithRetry(`/.netlify/functions/listImagesFromIPFS`);
 
 	console.log(data);
 }
