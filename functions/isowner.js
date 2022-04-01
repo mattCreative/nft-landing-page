@@ -41,6 +41,7 @@ const getOwnedNfts = async (wallet, page) => {
       Authorization: AUTH
     }
   };
+  
   const query = new URLSearchParams({
     chain,
     include,
