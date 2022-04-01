@@ -56,7 +56,6 @@ const getListOfImages = async () => {
 		type: 'all'
 	});
 	
-/*
 	try {
 		const data = await fetchData(url + query, options)
 
@@ -70,14 +69,7 @@ const getListOfImages = async () => {
 			error: err
 		}
 	}
-*/
-	
-	fetchData(url + query, options)
-	.then(res => {
-		console.log(res);
-    }).catch(function (error) { 
-		console.log(error);
-    });
+
 }
 
 async function fetchData(url, options) {
@@ -99,3 +91,8 @@ async function fetchData(url, options) {
     });
   });
 }
+
+process.on('unhandledRejection', (err) => { 
+  console.error(err);
+  process.exit(1);
+})
