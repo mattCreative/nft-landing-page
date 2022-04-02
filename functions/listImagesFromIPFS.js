@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
 }
 
 const getListOfImages = async () => {
-	const url = 'https://api.nftport.xyz/v0/me/storage';
+	const url = 'https://api.nftport.xyz/v0/me/storage?';
   
 	const options = {
 	method: 'GET',
@@ -72,7 +72,7 @@ const getListOfImages = async () => {
 
 }
 
-async function fetchData(url, options) {
+const fetchData = async(url, options) => {
   return new Promise((resolve, reject) => {
     return fetch(url, options).then(res => {
       const status = res.status;            

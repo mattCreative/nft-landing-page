@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
 
 
 const uploadImages = async (imagePath) => {
-	const url = "https://api.nftport.xyz/v0/files";
+	const url = "https://api.nftport.xyz/v0/files?";
 
 	const formData = new FormData();
 	const fileStream = fs.createReadStream(imagePath);
