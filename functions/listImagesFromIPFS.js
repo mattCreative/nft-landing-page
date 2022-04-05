@@ -3,31 +3,6 @@ const fetch = require('node-fetch');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
-	
-	/*
-	let options = {
-		method: 'GET',
-		qs: {type: ['all']},
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: AUTH
-		}
-	};
-	
-	const query = new URLSearchParams({
-		type: 'all'
-	});
-
-	fetch(url, options)
-		.then(res => res.json())
-		.then(json => {
-				console.log(json)
-				console.log(JSON.stringify(json, null, 2));
-				return json;
-			})
-		.catch(err => console.error('error:' + err));
-	*/
-
 	const response = await getListOfImages()
 	
 	return {
@@ -81,9 +56,6 @@ async function fetchData(url, options) {
         return resolve(res.json());
       } else {
         console.log(`Fetch failed with status ${status}`);
-		let json = res.json()
-		console.log(json)
-		console.log(JSON.stringify(json, null, 2));
         return reject(res.json());
       }        
     }).catch(function (error) { 

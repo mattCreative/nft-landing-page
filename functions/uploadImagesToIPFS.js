@@ -5,8 +5,20 @@ const FormData = require('form-data');
 const AUTH = process.env.NFTPORT_AUTH;
 
 exports.handler = async (event, context) => {
-	const url = "https://api.nftport.xyz/v0/files";
 	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
+	
+	const response = await uploadImages(imagePath)
+	
+	return {
+		'statusCode': 200,
+		'headers': {
+			'Cache-Control': 'no-cache',
+			'Content-Type': 'application/json',
+		},
+		'body': JSON.stringify(response)
+	}
+	
+	/*
 	const formData = new FormData();
 
 	formData.append('file', fs.createReadStream(imagePath));
@@ -28,12 +40,11 @@ exports.handler = async (event, context) => {
 		.then(res => res.json())
 		.then(json => console.log(json))
 		.catch(err => console.error('error:' + err));
+	*/
 }
 
-
-
 const uploadImages = async (imagePath) => {
-	const url = "https://api.nftport.xyz/v0/files?";
+	const url = "https://api.nftport.xyz/v0/files";
 
 	const formData = new FormData();
 	const fileStream = fs.createReadStream(imagePath);
@@ -63,11 +74,9 @@ const uploadImages = async (imagePath) => {
 	}
 }
 
-
 async function fetchData(url, options) {
   return new Promise((resolve, reject) => {
     return fetch(url, options).then(res => {
-		console.log(res);
       const status = res.status;            
 
       if(status === 200) {
