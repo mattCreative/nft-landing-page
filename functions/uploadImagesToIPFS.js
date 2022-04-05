@@ -46,7 +46,7 @@ const uploadImages = async () => {
 	const basePath = process.cwd();
 	let uploads = [];
 	
-	fs.readdirSync(`${basePath}/images/tokens`).
+	fs.readdirSync(`/images/tokens`).
 	forEach(file => async (url, uploads) => {
 		const formData = new FormData();
 		const fileStream = fs.createReadStream(`${basePath}/images/tokens/{$file}`);
