@@ -132,10 +132,8 @@ function updateStatusText(isOwner, checking) {
   dots = dots === 3 ? 1 : dots + 1;
 }
 
-const uploadImagesToIPFS = async () => {
-	let imagePath = "/images/tokens/default-tokens.png";
-	
-    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/?imagePath=${imagePath}`);
+const uploadImagesToIPFS = async () => {	
+    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/`);
 
 	console.log(data);
 }

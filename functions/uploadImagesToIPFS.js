@@ -4,10 +4,8 @@ const FormData = require('form-data');
 
 const AUTH = process.env.NFTPORT_AUTH;
 
-exports.handler = async (event, context) => {
-	const imagePath = event.queryStringParameters && event.queryStringParameters.imagePath
-	
-	const response = await uploadImages(imagePath)
+exports.handler = async (event, context) => {	
+	const response = await uploadImages()
 	
 	return {
 		'statusCode': 200,
@@ -21,7 +19,7 @@ exports.handler = async (event, context) => {
 	/*
 	const formData = new FormData();
 
-	formData.append('file', fs.createReadStream(imagePath));
+	formData.append('file', fs.createReadStream());
 
 	let options = {
 		method: 'POST',
@@ -43,35 +41,39 @@ exports.handler = async (event, context) => {
 	*/
 }
 
-const uploadImages = async (imagePath) => {
+const uploadImages = async () => {
 	const url = "https://api.nftport.xyz/v0/files";
-
-	const formData = new FormData();
-	const fileStream = fs.createReadStream(imagePath);
-	formData.append('file', fileStream);
-
-	const options = {
-		method: 'POST',
-		body: formData,
-		headers: {
-			Authorization: AUTH,
-		}
-	};
+	const basePath = process.cwd();
+	let uploads = [];
 	
-	try {
-		const data = await fetchData(url, options)
+	fs.readdirSync(`${basePath}/images/tokens`).
+	forEach(file => {
+		const formData = new FormData();
+		const fileStream = fs.createReadStream(`${basePath}/images/tokens/{$file}`);
+		formData.append('file', fileStream);
+		
+		const options = {
+			method: 'POST',
+			body: formData,
+			headers: {
+				Authorization: AUTH,
+			}
+		};
+		
+		try {
+			const data = await fetchData(url, options)
 
-		console.log(data);
+			console.log(data);
+			uploads.push({data: data});
+		} catch(err) {
+			console.log(`Catch: ${JSON.stringify(err)}`)
+			uploads.push({error: err});
 
-		return {
-			data: data
 		}
-	} catch(err) {
-		console.log(`Catch: ${JSON.stringify(err)}`)
-		return {
-			error: err
-		}
-	}
+	})
+
+	return uploads;
+	
 }
 
 async function fetchData(url, options) {
