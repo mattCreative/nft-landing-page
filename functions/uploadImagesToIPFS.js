@@ -16,29 +16,6 @@ exports.handler = async (event, context) => {
 		'body': JSON.stringify(response)
 	}
 	
-	/*
-	const formData = new FormData();
-
-	formData.append('file', fs.createReadStream());
-
-	let options = {
-		method: 'POST',
-		body: formData,
-		headers: {
-			Authorization: AUTH,
-		}
-	};
-	
-	fetch(url, options)
-		.then(res => {
-				console.log(res)
-				return res;
-			}
-		)
-		.then(res => res.json())
-		.then(json => console.log(json))
-		.catch(err => console.error('error:' + err));
-	*/
 }
 
 const uploadImages = async () => {
