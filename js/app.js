@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const onboardButton = document.getElementById('connectWallet');
 	const walletActions = document.getElementById('walletActions');
 	const checkWallet = document.getElementById('checkWallet');
-	const uploadImages = document.getElementById('uploadImages');
 	const listImages = document.getElementById('listImages');
 	
 	let accounts;
@@ -71,11 +70,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		event.preventDefault();
 	}
 	
-	uploadImages.onclick = async () => {
-		uploadImagesToIPFS();
-		event.preventDefault();
-	}
-	
 	listImages.onclick = async () => {
 		listImagesFROMIPFS();
 		event.preventDefault();
@@ -130,12 +124,6 @@ function updateStatusText(isOwner, checking) {
     }
   }
   dots = dots === 3 ? 1 : dots + 1;
-}
-
-const uploadImagesToIPFS = async () => {	
-    const data = await fetchWithRetry(`/.netlify/functions/uploadImagesToIPFS/`);
-
-	console.log(data);
 }
 
 const listImagesFROMIPFS = async () => {
